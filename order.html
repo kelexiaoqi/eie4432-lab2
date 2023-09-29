@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+        <script src="order.js"></script>
+        <title>21035803d_Drink Ordering System</title>
+    </head>
+
+    <body>
+        <header class="p-3  text-bg-dark text-center "><h1>Drink Ordering System</h1></header>
+        <div class="bg-secondary collapse" id="navbarToggleExternalContent" data-bs-theme="secondary"> 
+            <div class = "p-1 d-flex d-md-none"><a href="index.html" class="link-light">Home</a></div>
+            <div class = "p-1 d-flex d-md-none"><a href="order.html" class="link-warning fw-bold">Order</a></div>
+            <div class = "p-1 d-flex d-md-none"><a href="reserve.html" class="link-light">Reserve a Table</a></div>
+        </div>
+        <nav class="navbar navbar-secondary bg-secondary d-flex d-md-none p-1">
+            <div class="container-fluid">
+              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+            </div>
+        </nav>
+        <nav class="navbar bg-secondary d-none d-md-flex">
+            <div class="grid gap-3 d-flex container-fluid justify-content-center">
+                <div class = "p-2 g-col-3"><a href="index.html" class="link-light">Home</a></div>
+                <div class = "p-2 g-col-3"><a href="order.html" class="link-warning fw-bold">Order</a></div>
+                <div class = "p-2 g-col-3"><a href="reserve.html" class="link-light">Reserve a Table</a></div>
+            </div>
+        </nav>
+        
+
+        <main>    
+            <div class="container" >
+                <form id="priceForm" method="post">
+                    <div class="row ">
+                        <label for="name" class="form-label mb-2 ms-2 ms-lg-0">Name:</label>
+                        <input type="text" class="form-control mb-2 ms-2 ms-lg-0" id="name" name="name">
+                    </div>
+                    <div class="row ">
+                        <label for="drink" class="mb-2 ms-2 ms-lg-0">Drink:</label>
+                        <select id="drink" name="drink" onchange="calculatePrice()" class="mb-2 ms-2 ms-lg-0">
+                            <option value="none" selected> Please select</option>
+                            <option value="bubbleMilktea"> Bubble Milktea</option>
+                            <option value="icedLatte"> Iced Latte</option>
+                            <option value="icedMocha"> Iced Mocha</option>
+                        </select>
+                    </div>
+                    <div class="row d-inline-block d-lg-flex">
+                        <div class="col d-flex d-lg-block">
+                            <text class="mb-2 ms-2 ms-lg-0">Size:</text><br>
+                            <input type="radio" onchange="calculatePrice()" class="btn-check mb-2 ms-2 ms-lg-0" name="size" id="small" value="small" autocomplete="off">
+                            <label class="btn btn-outline-success mb-2 ms-2 ms-lg-0" for="small">Small</label><br>
+                            <input type="radio" onchange="calculatePrice()" class="btn-check mb-2 ms-2 ms-lg-0" name="size" id="medium" value="medium" autocomplete="off">
+                            <label class="btn btn-outline-success mb-2 ms-2 ms-lg-0" for="medium">Medium</label><br>
+                            <input type="radio" onchange="calculatePrice()" class="btn-check mb-2 ms-2 ms-lg-0" name="size" id="large" value="large" autocomplete="off">
+                            <label class="btn btn-outline-success mb-2 ms-2 ms-lg-0" for="large">Large</label><br>
+                        </div>
+                        <div class="col d-flex d-lg-block">
+                            <text class="mb-2 ms-2 ms-lg-0">Ice:</text><br>
+                            <input type="radio" class="btn-check mb-2 ms-2 ms-lg-0" name="ice" id="normal" value="normal" autocomplete="off">
+                            <label class="btn btn-outline-success mb-2 ms-2 ms-lg-0" for="normal">Normal</label><br>
+                            <input type="radio" class="btn-check mb-2 ms-2 ms-lg-0" name="ice" id="less" value="less" autocomplete="off">
+                            <label class="btn btn-outline-success mb-2 ms-2 ms-lg-0" for="less">Less</label><br>
+                            <input type="radio" class="btn-check mb-2 ms-2 ms-lg-0" name="ice" id="withoutice" value="withoutice" autocomplete="off">
+                            <label class="btn btn-outline-success mb-2 ms-2 ms-lg-0" mb-2 ms-2 ms-lg-0 for="withoutice">Without Ice</label><br>
+                        </div>
+                        <div class="col d-flex d-lg-block">
+                            <text class="mb-2 ms-2 ms-lg-0">sweetness:</text><br>
+                            <input type="radio" class="btn-check mb-2 ms-2 ms-lg-0" name="sweetness" id="fullsweet" value="fullsweet" autocomplete="off">
+                            <label class="btn btn-outline-success mb-2 ms-2 ms-lg-0" for="fullsweet">100%</label><br>
+                            <input type="radio" class="btn-check mb-2 ms-2 ms-lg-0" name="sweetness" id="halfsweet" value="halfsweet" autocomplete="off">
+                            <label class="btn btn-outline-success mb-2 ms-2 ms-lg-0" for="halfsweet">50%</label><br>
+                            <input type="radio" class="btn-check mb-2 ms-2 ms-lg-0" name="sweetness" id="withoutsweet" value="withoutsweet" autocomplete="off">
+                            <label class="btn btn-outline-success mb-2 ms-2 ms-lg-0" for="withoutsweet">0%</label><br>
+                        </div>
+                    </div>
+                    <div class ="row">
+                        <p class="fw-bold fs-3">Price: $<span id="price">0</span></p>
+                        <div class="d-grid gap-2 d-md-block">
+                        <button type="button" onclick="placeOrder(event)" class="btn btn-primary">Place order</button>
+                        <button type="button" onclick="resetbutton()" class="btn btn-warning">Reset</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </main>
+        <footer class="p-4 text-bg-dark text-center fixed-bottom">© 21035803d_HoLokKi-EIE4432Lab2Project</footer>
+    </body> 
+</html>
+
